@@ -7,15 +7,16 @@ import pyttsx3
 
 engine=pyttsx3.init('sapi5')
 voices=engine.getProperty('voices')
-engine.setProperty('voice',voices[0].id)
+engine.setProperty('voice',voices[1].id)
 
 def speak(audio):
     engine.say(audio)
     engine.runAndWait()
+    return True
 
 print("")
 print(' Welcome to Tesla Code Game')
-speak('  Welcome to Tesla Code Game'  )
+speak(" Welcome to Tesla Code Game")
 print("    your Commends are my life ")
 print("")
 print(' You are Driving Tesla CAR ')
@@ -42,16 +43,18 @@ def wishme():
         print("Good  Night ",user1.upper())
 user=str(input("     Your Name       "))
 user1=user.lower()
-commend =['start','stop','inspeed','despeed','w','s','a','d']
+commend =['start','stop','inspeed','despeed','w','s','a','d','help','tesla','time','play','playfm']
 print("")
 print(" Checking User matching...")
 i=0
-while i<8:
-        if user1 == commend[i]:
-            print(" Test Failed please change userName this ",i+1,"th  commend ")
+while i<len(commend):
+        if user1 in commend:
+            print(" Please change userName this Tesla commend ")
+            speak(" Please change userName this Tesla commend ")
             user1=str(input(" Enter Name -> "))
             i+=1
-            print("updataing the user_name successfully  ",user1.upper())
+            print(" updataing the user_name successfully  ",user1.upper())
+            i=0
             if i==7:
                 print(" Process of checking the user_name to enjoy ride ")
                 print(" ")
@@ -148,9 +151,12 @@ while exit:
  elif it=="time":
    hour2=int(datetime.datetime.now().hour)
    hour3=int(datetime.datetime.now().minute)
-   print(" time is ",hour2," Hour ",hour3," Minute")
+   hour4=int(datetime.datetime.now().second)
+   print(f" time is {hour2-12} Hour : {hour3} minute : {hour4} seconds")
    speak(hour2)
    speak(hour3)
+   speak(hour4)
+
  elif it=="play":
    print(" Ask for permission ")
    permiss=str(input(" I need permission for playing music ( Y / N )   "))
